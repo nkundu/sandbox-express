@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res) {
-  res.send([{ name: 'guest' }]);
+router.get('/:ticker', function(req, res) {
+  res.send([{ ticker: req.params.ticker }]);
 });
 
 module.exports = router;
