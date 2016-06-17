@@ -1,0 +1,17 @@
+extends layout
+
+script(src='/js/my.js')
+
+block content
+    h1= ticker
+    table(class="table table-striped table-hover")
+        thead
+            th(class="text-right") Name
+            th Value
+            th Description
+        each item in props
+            tr
+                th(scope="row" class="text-right")= item.name
+                td= item.val
+                td= item.desc
+    p!= ratings

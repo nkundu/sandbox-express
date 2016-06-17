@@ -20,13 +20,16 @@ var parseStockData = function (html) {
     return result;
 };
 
-var getStockData = function (ticker, res) {
+var getStockData = function (ticker, res, raw) {
     console.log(ticker);
     request('http://finviz.com/quote.ashx?t=' + ticker, 
         function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 var x = parseStockData(html);
-                res.send(x);
+                if (raw)
+                    res.send(x);
+                else
+                    res.render('stock', x);
             } else{
                 res.send(error);
             }
@@ -36,9 +39,12 @@ var getStockData = function (ticker, res) {
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
 router.get('/:ticker', function(req, res) {
-    getStockData(req.params.ticker, res);
+    getStockData(req.params.ticker, res, false);
+});
+
+router.get('/json/:ticker', function(req, res) {
+    getStockData(req.params.ticker, res, true);
 });
 
 module.exports = router;
