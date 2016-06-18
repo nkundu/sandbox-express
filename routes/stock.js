@@ -6,7 +6,10 @@ var parseStockData = function (html, result) {
 
     var ticker = $('#ticker').text();
 
-    result.ticker.push(ticker);
+    result.ticker.push({
+        name: ticker,
+        chart: 'http://finviz.com/' + $('#chart0').attr('src')
+    });
 
     $('.snapshot-td2-cp').each(function (idx) {
         var name = $(this).text();

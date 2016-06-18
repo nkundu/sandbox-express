@@ -1,14 +1,16 @@
 extends layout
 
-script(src='/js/my.js')
+block append js
+    script(src='/js/my.js')
 
 block content
-    h1= ticker
+    h1 Stock Comparison
     table.table.table-striped.table-hover
         thead
             th
             each item in ticker
-                th= item 
+                th
+                    a.chart(data-charturl=item.chart data-toggle="modal" data-target="#chartModal")= item.name 
             th Description
         each item in props
             tr
@@ -19,3 +21,13 @@ block content
     each item in ratings
         h3= item.ticker
         p!= item.content
+
+    #chartModal.modal.fade(role="dialog")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h4.modal-title Chart
+                .modal-body
+                    img#chartImg(src="")
+                .modal-footer
+                    button.btn.btn-default(type="button" data-dismiss="modal") Close
