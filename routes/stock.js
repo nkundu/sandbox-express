@@ -73,7 +73,12 @@ var getStockData = function (tickers, res, raw) {
 var express = require('express');
 var router = express.Router();
 
+router.get('/', function(req, res) { 
+    getStockData(req.session.tickers.split(','), res, false);
+});
+
 router.get('/:ticker', function(req, res) {
+    req.session.tickers = req.params.ticker; 
     getStockData(req.params.ticker.split(','), res, false);
 });
 
