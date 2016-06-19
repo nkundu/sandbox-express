@@ -5,19 +5,20 @@ block append js
 
 block content
     h1 Stock Comparison
-    table.table.table-striped.table-hover
+    table.table.table-striped
         thead
             th
             each item in ticker
                 th
-                    a.chart(data-charturl=item.chart data-toggle="modal" data-target="#chartModal")= item.name 
+                    a.chart(href="#" data-charturl=item.chart data-toggle="modal" data-target="#chartModal")= item.name 
             th Description
-        each item in props
-            tr
-                th.text-right.name(scope="row")= item.name
-                each item2 in item.val
-                    td.val= item2
-                td!= item.desc
+        tbody.sortable
+            each item in props
+                tr
+                    th.text-right.name(scope="row")= item.name
+                    each item2 in item.val
+                        td.val= item2
+                    td!= item.desc
     each item in ratings
         h3= item.ticker
         p!= item.content
@@ -28,6 +29,6 @@ block content
                 .modal-header
                     h4.modal-title Chart
                 .modal-body
-                    img#chartImg(src="")
+                    img#chartImg(src="" style="width:550px")
                 .modal-footer
                     button.btn.btn-default(type="button" data-dismiss="modal") Close
