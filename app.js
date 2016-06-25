@@ -11,6 +11,7 @@ var cookieSession = require('cookie-session');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var stocks = require('./routes/stock');
+var prettygit = require('./routes/prettygit');
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use(cookieSession({
 app.use('/', routes);
 app.use('/users', users);
 app.use('/stock', stocks);
+app.use('/prettygit', prettygit);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

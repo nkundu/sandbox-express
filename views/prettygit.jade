@@ -1,0 +1,16 @@
+extends layout
+
+block append css
+  link(rel='stylesheet', href='/css/bootstrap_home.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css')
+  script(src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js")
+  style.
+    .fa {
+      color: #1695A3;
+    }
+
+block content
+  h1
+    i.fa.fa-github
+    | &nbsp;#{title}
+  pre.prettyprint!= code

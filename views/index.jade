@@ -57,23 +57,36 @@ block content
             | Adjust the URL to display different stocks
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | Express
+            | Express middleware
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | Bootstrap
+            | Bootstrap layout
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | Jade
+            | Jade templates
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | cheerio
+            | cheerio on the backend to get the data
       li
         i.fa-li.fa.fa-question-circle
-        a(href="https://github.com/nkundu/node-perfmon") Web Access to WMI performance data
+        | Display GitHub content inline
         ul.fa-ul
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | A simple experiment with node.js
+            a(href="prettygit/nkundu/sandbox-express/master/routes/prettygit.js") route handler
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            a(href="prettygit/nkundu/sandbox-express/master/views/prettygit.jade") jade template
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | Used to display the code links on this page from GitHub.
+      li
+        i.fa-li.fa.fa-question-circle
+        a(href="prettygit/nkundu/node-perfmon/master/http-server.js") Web Access to WMI performance data
+        ul.fa-ul
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | A simple experiment with node.js and journey middleware
 
   div.row
     h2 Raspberry Pi
@@ -98,13 +111,13 @@ block content
             a(href="https://github.com/nkundu/wiringpi-examples/blob/master/amtel_manchester_coding.pdf") Documentation from Amtel on using Manchester encoding
           li
             i.fa-li.fa.fa-arrow-circle-right
-            a(href="https://github.com/nkundu/wiringpi-examples/blob/master/test.sh") Script to test sending and receiving
+            a(href="prettygit/nkundu/wiringpi-examples/master/test.sh") Script to test sending and receiving
           li
             i.fa-li.fa.fa-arrow-circle-right
-            a(href="https://github.com/nkundu/wiringpi-examples/blob/master/rfwrite.c") Read from stdin and transmit
+            a(href="prettygit/nkundu/wiringpi-examples/master/rfwrite.c") Read from stdin and transmit
           li
             i.fa-li.fa.fa-arrow-circle-right
-            a(href="https://github.com/nkundu/wiringpi-examples/blob/master/rfread.c") Receive and decode using a state machine
+            a(href="prettygit/nkundu/wiringpi-examples/master/rfread.c") Receive and decode using a state machine
       li 
         i.fa-li.fa.fa-dashboard
         | DHT22 Temperature and Humidity Web-enabled Monitor
@@ -114,10 +127,10 @@ block content
             a(href="https://www.amazon.com/gp/product/B00L8TB1BY", target="_new") Amazon module
           li
             i.fa-li.fa.fa-arrow-circle-right
-            a(href="https://github.com/nkundu/wiringpi-examples/blob/master/readTemp.sh") Script to run the process
+            a(href="prettygit/nkundu/wiringpi-examples/master/readTemp.sh") Script to run the process
           li
             i.fa-li.fa.fa-arrow-circle-right
-            a(href="https://github.com/nkundu/wiringpi-examples/blob/master/dht22.c") Read one temperature and one humidity value
+            a(href="prettygit/nkundu/wiringpi-examples/master/dht22.c") Read one temperature and one humidity value
       li
         i.fa-li.fa.fa-wifi
         span IoT
@@ -132,6 +145,9 @@ block content
           li
             i.fa-li.fa.fa-arrow-circle-right
             | 470 uF cap across power supply helps on module boot.  Range was excellent with the external antenna mounted to a window.
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | You can communicate with this module using minicom, but you need to disbale the serial port console login.
           li
             i.fa-li.fa.fa-arrow-circle-right
             a(href="https://cdn.sparkfun.com/assets/learn_tutorials/4/0/3/4A-ESP8266__AT_Instruction_Set__EN_v0.30.pdf") Expressif ESP8266 AT Command Set
