@@ -16,7 +16,8 @@ router.get('/:owner/:repo/master/:path(*)', function(req, res) {
                 // parse the element
                 res.render('prettygit', {
                     title: req.params.repo + ': ' + req.params.path,
-                    code: html
+                    code: html,
+                    year: new Date().getFullYear()
                 });
             } else {
                 res.status(500).send('Error!');

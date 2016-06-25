@@ -10,7 +10,11 @@ block append css
     }
 
 block content
+  div.row
+    div.col.col-lg-12.pull-right.text-right
+        a(href="/") Home
   h1
     i.fa.fa-github
     | &nbsp;#{title}
   pre.prettyprint!= code
+  p.text-muted &copy; #{year} Nicholas Kundu
