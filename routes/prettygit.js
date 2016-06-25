@@ -5,7 +5,8 @@ var router = express.Router();
 
 /* GET pretty content from git. */
 
-router.get('/:owner/:repo/master/:path', function(req, res) {
+// path(*) takes everything, including slashes, in this param
+router.get('/:owner/:repo/master/:path(*)', function(req, res) {
     request('https://raw.githubusercontent.com/' 
                 + req.params.owner + '/' 
                 + req.params.repo + '/master/' 
