@@ -31,15 +31,15 @@ block content
     h1 Nicholas Kundu
   div.row
     div.col.col-lg-12
-      span.fa.fa-linkedin.fa-2x &nbsp;
+      i.fa.fa-linkedin.fa-2x &nbsp;
       a(href="https://www.linkedin.com/in/nicholas-kundu-819760112") LinkedIn
   div.row
     div.col.col-lg-12
-      span.fa.fa-github.fa-2x &nbsp;
+      i.fa.fa-github.fa-2x &nbsp;
       a(href="https://github.com/nkundu") GitHub
   div.row
     div.col.col-lg-12
-      span.fa.fa-stack-overflow.fa-2x &nbsp;
+      i.fa.fa-stack-overflow.fa-2x &nbsp;
       a(href="http://stackoverflow.com/users/1490/nick") StackOverflow
 
   div.row
@@ -53,77 +53,111 @@ block content
         a(href="/stock/goog,aapl,team,pfe,low") Stock Market Stats Summary
         ul.fa-ul
           li
-            i.fa-li
-            span Adjust the URL to display different stocks
+            i.fa-li.fa.fa-arrow-circle-right
+            | Adjust the URL to display different stocks
           li
-            i.fa-li
-            span Express
+            i.fa-li.fa.fa-arrow-circle-right
+            | Express
           li
-            i.fa-li
-            span Bootstrap
+            i.fa-li.fa.fa-arrow-circle-right
+            | Bootstrap
           li
-            i.fa-li
-            span Jade
+            i.fa-li.fa.fa-arrow-circle-right
+            | Jade
           li
-            i.fa-li
-            span cheerio
+            i.fa-li.fa.fa-arrow-circle-right
+            | cheerio
       li
         i.fa-li.fa.fa-question-circle
         a(href="https://github.com/nkundu/node-perfmon") Web Access to WMI performance data
         ul.fa-ul
           li
-            i.fa-li
-            span A simple experiment with node.js
+            i.fa-li.fa.fa-arrow-circle-right
+            | A simple experiment with node.js
 
   div.row
     h2 Raspberry Pi
     ul.fa-ul
       li 
         i.fa-li.fa.fa-wifi
-        span 315Mhz Transmit/Receive Using Manchester Encoding
+        | 315Mhz Transmit/Receive Using Manchester Encoding
         ul.fa-ul
           li
-            i.fa-li
+            i.fa-li.fa.fa-arrow-circle-right
+            a(href="https://www.amazon.com/gp/product/B00UWBJ7GK", target="_new") Amazon modules
+            | &nbsp;tested with Pi @ 3.3V.
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | These are listed as 315 MHz but I received a 433 MHz module.
+            | &nbsp;Range is not great but works for simple experimentation.
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | Receiver has automatic gain control (AGC).  When nothing is transmitting, the gain scales up generating a lot of amplified noise.  When a transmitter starts sending, the high gain rails the amplifier.  Transmit a preamble with alternating 1's and 0's to allow the AGC to adapt to the received power level before tranmitting real data.
+          li
+            i.fa-li.fa.fa-arrow-circle-right.fa-arrow-circle-right
             a(href="https://github.com/nkundu/wiringpi-examples/blob/master/amtel_manchester_coding.pdf") Documentation from Amtel on using Manchester encoding
           li
-            i.fa-li
+            i.fa-li.fa.fa-arrow-circle-right
             a(href="https://github.com/nkundu/wiringpi-examples/blob/master/test.sh") Script to test sending and receiving
           li
-            i.fa-li
+            i.fa-li.fa.fa-arrow-circle-right
             a(href="https://github.com/nkundu/wiringpi-examples/blob/master/rfwrite.c") Read from stdin and transmit
           li
-            i.fa-li
+            i.fa-li.fa.fa-arrow-circle-right
             a(href="https://github.com/nkundu/wiringpi-examples/blob/master/rfread.c") Receive and decode using a state machine
       li 
         i.fa-li.fa.fa-dashboard
-        span DHT22 Temperature and Humidity Web-enabled Monitor
+        | DHT22 Temperature and Humidity Web-enabled Monitor
         ul.fa-ul
           li
-            i.fa-li
+            i.fa-li.fa.fa-arrow-circle-right
+            a(href="https://www.amazon.com/gp/product/B00L8TB1BY", target="_new") Amazon module
+          li
+            i.fa-li.fa.fa-arrow-circle-right
             a(href="https://github.com/nkundu/wiringpi-examples/blob/master/readTemp.sh") Script to run the process
           li
-            i.fa-li
+            i.fa-li.fa.fa-arrow-circle-right
             a(href="https://github.com/nkundu/wiringpi-examples/blob/master/dht22.c") Read one temperature and one humidity value
+      li
+        i.fa-li.fa.fa-wifi
+        span IoT
+        ul.fa-ul
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | Use ESP-05 module connected to a U.FL antenna (
+            a(a href="https://www.amazon.com/gp/product/B00OSWCGVW", target="_new") Amazon module
+            | ,&nbsp
+            a(a href="https://www.amazon.com/gp/product/B004ZHT2JE", target="_new") Amazon antenna
+            | )
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | 470 uF cap across power supply helps on module boot.  Range was excellent with the external antenna mounted to a window.
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            a(href="https://cdn.sparkfun.com/assets/learn_tutorials/4/0/3/4A-ESP8266__AT_Instruction_Set__EN_v0.30.pdf") Expressif ESP8266 AT Command Set
+
 
   div.row
     h2 Interests
     ul.fa-ul
       li
         i.fa-li
-        b Tried and True:&nbsp;
-        span C#, ASP.NET, MVC, WebAPI, Web Forms, Windows Forms
+        b Tried and True:
+        p C/C++, MFC, Boost
+        p C#, ASP.NET, MVC, WebAPI, Web Forms, Windows Forms
+        p jQuery, Bootstrap, JavaScript
       li
         i.fa-li
-        b Shiny New:&nbsp;
-        span node.js, jQuery, Bootstrap, JavaScript, mongodb
+        b Shiny New:
+        p node.js, express, mongodb
       li
         i.fa-li
-        b Always Necessary:&nbsp;
-        span DB2, MSSQL
+        b Always Necessary:
+        p DB2, MSSQL
       li
         i.fa-li
-        b Sometimes Useful:&nbsp;
-        span SPI, I2C
+        b Sometimes Useful:
+        p SPI, I2C
 
 
   footer.footer

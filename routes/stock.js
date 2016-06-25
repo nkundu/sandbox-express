@@ -52,19 +52,17 @@ var getStockData = function (tickers, res, raw) {
                 if (!error && response.statusCode == 200) {
                     // parse the element
                     parseStockData(html, result);
+                }
 
-                    if (tickers.length == 0) {
-                        // if there are no more elements, return
-                        if (raw)
-                            res.send(result);
-                        else
-                            res.render('stock', result);
-                    } else {
-                        // process the next element
-                        processOneTicker();
-                    }
-                } else{
-                    res.send(error);
+                if (tickers.length == 0) {
+                    // if there are no more elements, return
+                    if (raw)
+                        res.send(result);
+                    else
+                        res.render('stock', result);
+                } else {
+                    // process the next element
+                    processOneTicker();
                 }
         });
     })();
