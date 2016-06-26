@@ -16,7 +16,8 @@ block append css
     }
     body {
       /* Margin bottom by footer height */
-      margin-bottom: 60px;
+      margin: 0px auto 60px auto;
+      max-width: 600px;
     }
     .footer {
       position: absolute;
@@ -24,6 +25,9 @@ block append css
       width: 100%;
       /* Set the fixed height of the footer here */
       height: 60px;
+    }
+    ul.fa-ul {
+      padding-bottom: 20px;
     }
 
 block content
@@ -57,16 +61,22 @@ block content
             | Adjust the URL to display different stocks
           li
             i.fa-li.fa.fa-arrow-circle-right
+            | Data is scraped from&nbsp;
+            a(href="http://finviz.com/", target="_blank") finviz.com
+            | &nbsp;and parsed with&nbsp;
+            a(href="https://github.com/cheeriojs/cheerio", target="_blank") cheerio
+          li
+            i.fa-li.fa.fa-arrow-circle-right
             | Express middleware
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | Bootstrap layout
+            a(href="prettygit/nkundu/sandbox-express/master/routes/stock.js") route handler
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | Jade templates
+            a(href="prettygit/nkundu/sandbox-express/master/views/stock.jade") jade template
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | cheerio on the backend to get the data
+            a(href="prettygit/nkundu/sandbox-express/master/public/js/my.js") js for highlights
       li
         i.fa-li.fa.fa-question-circle
         | Display GitHub content inline
@@ -105,6 +115,9 @@ block content
             | &nbsp;Range is not great but works for simple experimentation.
           li
             i.fa-li.fa.fa-arrow-circle-right
+            | To transmit data, a Manchester encoding must be used.  Manchester has no DC bias, so it's perfect for RF transmission.  The encoding encodes the two binary states as a low to high or high to low transition.  Another benefit of this is that it makes the encoding self-clocking.
+          li
+            i.fa-li.fa.fa-arrow-circle-right
             | Receiver has automatic gain control (AGC).  When nothing is transmitting, the gain scales up generating a lot of amplified noise.  When a transmitter starts sending, the high gain rails the amplifier.  Transmit a preamble with alternating 1's and 0's to allow the AGC to adapt to the received power level before tranmitting real data.
           li
             i.fa-li.fa.fa-arrow-circle-right.fa-arrow-circle-right
@@ -115,6 +128,11 @@ block content
           li
             i.fa-li.fa.fa-arrow-circle-right
             a(href="prettygit/nkundu/wiringpi-examples/master/rfwrite.c") Read from stdin and transmit
+            | &nbsp;(support libraries:&nbsp;
+            a(href="prettygit/nkundu/wiringpi-examples/master/manchester.h") manchester.h
+            | ,&nbsp;
+            a(href="prettygit/nkundu/wiringpi-examples/master/manchester.c") manchester.c
+            | )
           li
             i.fa-li.fa.fa-arrow-circle-right
             a(href="prettygit/nkundu/wiringpi-examples/master/rfread.c") Receive and decode using a state machine
@@ -125,6 +143,14 @@ block content
           li
             i.fa-li.fa.fa-arrow-circle-right
             a(href="https://www.amazon.com/gp/product/B00L8TB1BY", target="_blank") Amazon module
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | Data is uploaded to&nbsp;
+            a(href="https://thingspeak.com/", target="_blank") thingspeak.com
+            | , a free service provided by MathWorks that recieves the data via HTTP POST and plots it.
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            a(href="https://www.mathworks.com/help/thingspeak/update-channel-feed.html", target="_blank") ThingSpeak Documentation
           li
             i.fa-li.fa.fa-arrow-circle-right
             a(href="prettygit/nkundu/wiringpi-examples/master/readTemp.sh") Script to run the process
@@ -177,8 +203,7 @@ block content
 
 
   footer.footer
-    div.container
-      p.text-muted &copy; #{year} Nicholas Kundu
-      p.text-muted Made with node.js, jade, express, bootstrap.&nbsp;
-        a(href="prettygit/nkundu/sandbox-express/master/views/index.jade") jade template for this page
+    p.text-muted &copy; #{year} Nicholas Kundu
+    p.text-muted Made with node.js, jade, express, bootstrap.&nbsp;
+      a(href="prettygit/nkundu/sandbox-express/master/views/index.jade") jade template for this page
 
