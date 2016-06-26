@@ -2,19 +2,21 @@ extends layout
 
 block append css
   link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css')
 
 block append js
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.js')
     script(src='/js/my.js')
 
 block content
     h1 Stock Comparison
     .row
         .col.col-lg-2
-            .input-group
-                input.form-control#addTicker(type="text", placeholder="Add Ticker")
-                span.input-group-btn
-                    button.btn.btn-default#addStock(type="button")
-                        i.fa.fa-plus-circle
+            select.addTicker(style="width: 100%")
+        .col.col-lg-2
+            button.btn.btn-default#addStock(type="button")
+                i.fa.fa-plus-circle
+                | &nbsp;Add Stock
     table.table.table-striped
         thead
             th

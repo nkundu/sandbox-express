@@ -16,8 +16,26 @@ $(document).ready(function () {
         $('#chartImg').attr('src', $(this).attr('data-charturl'));
     });
 
+    $('select.addTicker').select2({
+        ajax: {
+            url: '/stock/suggest',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (val, i) {
+                        return {
+                            id: val.ticker, 
+                            text: val.ticker + ' - ' + val.company
+                        };
+                    })
+                };
+            }
+        }
+    });
+
     $('#addStock').click(function () {
-        $.ajax("/stock/add/" + $('#addTicker').val()).done(function () {
+        $.ajax("/stock/add/" + $('select.addTicker').select2('data')[0].id).done(function () {
             window.location = "/stock";
         });
     });

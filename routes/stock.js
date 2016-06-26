@@ -80,8 +80,15 @@ router.get('/add/:ticker', function(req, res) {
     res.sendStatus(200);
 });
 
+router.get('/suggest', function(req, res) {
+    request('http://finviz.com/api/suggestions.ashx?input=' + req.query.term, 
+        function (error, response, html) {
+            res.send(html);
+    });
+});
+
 router.get('/delete/:ticker', function(req, res) {
-    var existing = req.session.tickers.split(',');
+    var existing = req.session.tickers.toLowerCase().split(',');
     var idx = existing.indexOf(req.params.ticker.toLowerCase());
     if (idx != -1)
     {
