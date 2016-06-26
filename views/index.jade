@@ -159,15 +159,22 @@ block content
             a(href="prettygit/nkundu/wiringpi-examples/master/dht22.c") Read one temperature and one humidity value
       li
         i.fa-li.fa.fa-wifi
-        span IoT
+        span IoT Research
         ul.fa-ul
           li
             i.fa-li.fa.fa-arrow-circle-right
-            | Use ESP-05 module connected to a U.FL antenna (
+            | The Expressif ESP8266 makes it easy to enable micros with WiFi and HTTP communication capability over a serial link.
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | I used ESP-05 module connected to a U.FL antenna (
             a(a href="https://www.amazon.com/gp/product/B00OSWCGVW", target="_blank") Amazon module
             | ,&nbsp;
             a(a href="https://www.amazon.com/gp/product/B004ZHT2JE", target="_blank") Amazon antenna
             | )
+          li
+            i.fa-li.fa.fa-arrow-circle-right
+            | I don't think the ESP-05 is able to be flashed; the appropriate pin is not available on the header.  You need to ground GPIO0 to flash the firmware.
+            | As of Fall, 2015, the stock firmware did not allow placing the ESP8266 into promiscuous mode, to capture all 802.11 activity, which was my original intent for this module. 
           li
             i.fa-li.fa.fa-arrow-circle-right
             | 470 uF cap across power supply helps on module boot.  Range was excellent with the external antenna mounted to a window.

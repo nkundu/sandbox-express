@@ -1,16 +1,29 @@
 extends layout
 
+block append css
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css')
+
 block append js
     script(src='/js/my.js')
 
 block content
     h1 Stock Comparison
+    .row
+        .col.col-lg-2
+            .input-group
+                input.form-control#addTicker(type="text", placeholder="Add Ticker")
+                span.input-group-btn
+                    button.btn.btn-default#addStock(type="button")
+                        i.fa.fa-plus-circle
     table.table.table-striped
         thead
             th
             each item in ticker
                 th
-                    a.chart(href="#" data-charturl=item.chart data-toggle="modal" data-target="#chartModal")= item.name 
+                    a.chart(href="#" data-charturl=item.chart data-toggle="modal" data-target="#chartModal")= item.name
+                    | &nbsp;
+                    a.deleteStock(href="#" data-ticker=item.name)
+                        i.fa.fa-minus-circle
             th Description
         tbody.sortable
             each item in props

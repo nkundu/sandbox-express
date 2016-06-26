@@ -75,9 +75,27 @@ router.get('/', function(req, res) {
     getStockData(req.session.tickers.split(','), res, false);
 });
 
+router.get('/add/:ticker', function(req, res) {
+    req.session.tickers = req.session.tickers + ',' + req.params.ticker; 
+    res.sendStatus(200);
+});
+
+router.get('/delete/:ticker', function(req, res) {
+    var existing = req.session.tickers.split(',');
+    var idx = existing.indexOf(req.params.ticker.toLowerCase());
+    if (idx != -1)
+    {
+        existing.splice(idx, 1);
+        req.session.tickers = existing.join(',');
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(500);
+    }
+});
+
 router.get('/:ticker', function(req, res) {
     req.session.tickers = req.params.ticker; 
-    getStockData(req.params.ticker.split(','), res, false);
+    getStockData(req.session.tickers.split(','), res, false);
 });
 
 router.get('/json/:ticker', function(req, res) {

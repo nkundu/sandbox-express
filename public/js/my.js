@@ -16,6 +16,18 @@ $(document).ready(function () {
         $('#chartImg').attr('src', $(this).attr('data-charturl'));
     });
 
+    $('#addStock').click(function () {
+        $.ajax("/stock/add/" + $('#addTicker').val()).done(function () {
+            window.location = "/stock";
+        });
+    });
+
+    $('a.deleteStock').click(function () {
+        $.ajax("/stock/delete/" + $(this).attr('data-ticker')).done(function () {
+            window.location = "/stock";
+        });
+    });
+
     // http://www.flatuicolorpicker.com/
     var colors_back = ['#F1A9A0', '#C5EFF7', '#C8F7C5'];
     var colors_bar = ['#E26A6A', '#89C4F4', '#87D37C'];
