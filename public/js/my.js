@@ -11,7 +11,9 @@ String.prototype.parseNumberAccounting = function () {
 };
 
 var showBusyModal = function () {
-    $.blockUI({ css: { 
+    $.blockUI({ 
+    	message: '<div class="spinner"></div><br />Please wait...',
+    	css: { 
         border: 'none', 
         padding: '15px', 
         backgroundColor: '#000', 
@@ -19,9 +21,9 @@ var showBusyModal = function () {
         '-moz-border-radius': '10px', 
         opacity: .5, 
         color: '#fff' 
-    } }); 
+      }
+    }); 
 }
-
 
 $(document).ready(function () {
     $('a.chart').click(function () {
