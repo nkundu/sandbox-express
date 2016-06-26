@@ -8,6 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 
+var config = require('./config.json');
+
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var stocks = require('./routes/stock');
@@ -34,16 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieSession({
     name: 'session',
-    keys: ['uX86WPv90hWpBpI2uuJC',
-           'FLSySQCxO5rBQpYlLrhi',
-           'UCrIozbwMlAad8WXsw6G',
-           '9BXRCON8lYFx1XcZOJdN',
-           'psrVeRvqzw5w2XUsR9HA',
-           'OcsARZLxfoJLR9ZsmVVr',
-           'qUPwVCqiMI9297amAt0c',
-           'dDC3pYrBIl5hVhCjzSsZ',
-           'PQDcupZqc604MDdaeP4a',
-           'VccX2fyJ9sAo0vfepzuk']
+    keys: config.sessionKeys
 }));
 
 app.use('/', routes);

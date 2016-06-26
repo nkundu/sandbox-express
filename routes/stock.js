@@ -75,8 +75,8 @@ router.get('/', function(req, res) {
     getStockData(req.session.tickers.split(','), res, false);
 });
 
-router.get('/add/:ticker', function(req, res) {
-    req.session.tickers = req.session.tickers + ',' + req.params.ticker; 
+router.get('/add', function(req, res) {
+    req.session.tickers = req.session.tickers + ',' + req.query.ticker; 
     res.sendStatus(200);
 });
 
@@ -87,9 +87,9 @@ router.get('/suggest', function(req, res) {
     });
 });
 
-router.get('/delete/:ticker', function(req, res) {
+router.get('/delete', function(req, res) {
     var existing = req.session.tickers.toLowerCase().split(',');
-    var idx = existing.indexOf(req.params.ticker.toLowerCase());
+    var idx = existing.indexOf(req.query.ticker.toLowerCase());
     if (idx != -1)
     {
         existing.splice(idx, 1);

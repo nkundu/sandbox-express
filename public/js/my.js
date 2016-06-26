@@ -10,6 +10,18 @@ String.prototype.parseNumberAccounting = function () {
         return nbr;
 };
 
+var showBusyModal = function () {
+    $.blockUI({ css: { 
+        border: 'none', 
+        padding: '15px', 
+        backgroundColor: '#000', 
+        '-webkit-border-radius': '10px', 
+        '-moz-border-radius': '10px', 
+        opacity: .5, 
+        color: '#fff' 
+    } }); 
+}
+
 
 $(document).ready(function () {
     $('a.chart').click(function () {
@@ -35,13 +47,15 @@ $(document).ready(function () {
     });
 
     $('#addStock').click(function () {
-        $.ajax("/stock/add/" + $('select.addTicker').select2('data')[0].id).done(function () {
+        showBusyModal();
+        $.ajax("/stock/add?ticker=" + $('select.addTicker').select2('data')[0].id).done(function () {
             window.location = "/stock";
         });
     });
 
     $('a.deleteStock').click(function () {
-        $.ajax("/stock/delete/" + $(this).attr('data-ticker')).done(function () {
+        showBusyModal();
+        $.ajax("/stock/delete?ticker=" + $(this).attr('data-ticker')).done(function () {
             window.location = "/stock";
         });
     });
