@@ -1,6 +1,32 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
+
+function parseDate(s) {
+  var months = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,
+                jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+  var p = s.split('-');
+  return new Date(2000 + parseInt(p[2], 10), months[p[0].toLowerCase()], p[1]);
+};
+
+var parseRatings = function (html) {
+    $ = cheerio.load(html);
+
+    var result = [];
+
+    $('table tr').each(function (idx) {
+        result.push({
+            date: parseDate($(this).find('td:nth-child(1)').text()),
+            status: $(this).find('td:nth-child(2)').text(),
+            who: $(this).find('td:nth-child(3)').text(),
+            weight: $(this).find('td:nth-child(4)').text(),
+            price: $(this).find('td:nth-child(5)').text()
+        });
+    });
+
+    return result;
+};
+
 var parseStockData = function (html, result) {
     $ = cheerio.load(html);
 
@@ -30,9 +56,13 @@ var parseStockData = function (html, result) {
         }
     });
 
+    // result.ratings.push({
+    //     ticker: ticker,
+    //     content: $('.fullview-ratings-outer').html()
+    // });
     result.ratings.push({
         ticker: ticker,
-        content: $('.fullview-ratings-outer').html()
+        content: parseRatings($('.fullview-ratings-outer').html())
     });
 };
 
@@ -106,7 +136,7 @@ router.get('/:ticker', function(req, res) {
 });
 
 router.get('/json/:ticker', function(req, res) {
-    getStockData(req.params.ticker, res, true);
+    getStockData(req.params.ticker.split(','), res, true);
 });
 
 module.exports = router;

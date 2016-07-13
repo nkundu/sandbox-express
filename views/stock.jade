@@ -34,9 +34,24 @@ block content
                     each item2 in item.val
                         td.val= item2
                     td!= item.desc
-    each item in ratings
-        h3= item.ticker
-        p!= item.content
+    .row
+        each item in ratings
+            h3= item.ticker
+            table.table.table-hover
+                thead
+                    th Date
+                    th Status
+                    th Weight
+                    th Price
+                    //th Who
+                tbody.sortable
+                    each item2 in item.content
+                        tr
+                            td= moment(item2.date).format("MM/DD/YYYY")
+                            td= item2.status
+                            td= item2.weight
+                            td= item2.price
+                            //td= item2.who
 
     #chartModal.modal.fade(role="dialog")
         .modal-dialog
