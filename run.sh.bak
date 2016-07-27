@@ -1,1 +1,2 @@
-exec NODE_ENV=production npm start app.js
+export NODE_ENV=production
+exec npm start app.js
