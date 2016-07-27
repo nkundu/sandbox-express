@@ -27,7 +27,7 @@ block content
   script.
     $(document).ready(function () {
       showBusyModal();
-      $.ajax('/prettygit/raw/#{code}').done(function (data) {
+      $.ajax('https://raw.githubusercontent.com/#{code}').done(function (data) {
         $('.prettyprint').text(data);
         prettyPrint();
         $.unblockUI();

@@ -16,19 +16,4 @@ router.get('/:owner/:repo/master/:path(*)', function(req, res) {
             });
 });
 
-router.get('/raw/:owner/:repo/master/:path(*)', function(req, res) {
-    request('https://cdn.rawgit.com/' 
-                + req.params.owner + '/' 
-                + req.params.repo + '/master/' 
-                + req.params.path, 
-        function (error, response, html) {
-            if (!error && response.statusCode == 200) {
-                res.send(html);
-            } else {
-                res.status(500).send('Error!');
-            }
-    });
-});
-
-
 module.exports = router;
