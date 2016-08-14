@@ -6,7 +6,8 @@ var router = express.Router();
 /* GET pretty content from git. */
 
 // path(*) takes everything, including slashes, in this param
-router.get('/:owner/:repo/master/:path(*)', function(req, res) {
+router.get('/:owner/:repo/master/:path(*).html', function(req, res) {
+    res.cont
     res.render('prettygit', {
         title: req.params.repo + ': ' + req.params.path,
         code: req.params.owner + '/' 
