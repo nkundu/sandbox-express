@@ -41,7 +41,7 @@ app.use(cookieSession({
 }));
 
 app.use('/', routes);
-app.use('/static', express.static('public'));
+app.use('/static', express.static('static'));
 app.use('/users', users);
 app.use('/stock', stocks);
 app.use('/prettygit', prettygit);
