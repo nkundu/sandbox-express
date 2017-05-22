@@ -69,6 +69,7 @@ var parseStockData = function (html, result) {
 var getStockData = function (tickers, res, raw) {
     // initialize.  each ticker will be added in sequence
     var result = {};
+    result.ad = new Date().getMonth();
     result.ticker = [];
     result.props = [];
     result.ratings = [];

@@ -13,7 +13,8 @@ router.get('/:owner/:repo/master/:path(*).html', function(req, res) {
         code: req.params.owner + '/' 
             + req.params.repo + '/master/' 
             + req.params.path,
-        year: new Date().getFullYear()
+        year: new Date().getFullYear(),
+        ad: new Date().getMonth()
             });
 });
 
