@@ -10,8 +10,12 @@
     <script>
       $(document).ready(function () {
         $('#demoForm').submit(function () {
-          var sk = new p5(sketch(5, 10, 1, 10, 1), window.document.getElementById('demo'));
-          $(this);
+          var processNoise = parseInt($(this).find('#processNoise').val(), 10);
+          var obsNoisePosReal = parseFloat($(this).find('#obsNoisePosReal').val());
+          var obsNoiseVelReal = parseFloat($(this).find('#obsNoiseVelReal').val());
+          var obsNoisePosSent = parseFloat($(this).find('#obsNoisePosSent').val());
+          var obsNoiseVelSent = parseFloat($(this).find('#obsNoiseVelSent').val());
+          var sk = new p5(sketch(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePosSent, obsNoiseVelSent), window.document.getElementById('demo'));
           return false;
         });
       });
