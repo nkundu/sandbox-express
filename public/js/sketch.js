@@ -13,8 +13,16 @@ var sketch = function(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePo
 		var measureX = [0];
 		var measureY = [0];
 
+		var mouseOnCanvas = false;
+
 		p.setup = function () {
-			p.createCanvas(800, 600);
+			var c = p.createCanvas(800, 600);
+			c.mousePressed(function(){
+				mouseOnCanvas = true;
+			});
+			c.mouseReleased(function() {
+				mouseOnCanvas = false;
+			});
 			p.frameRate(30);
 			p.background(0);   // Set the background to black
 
@@ -26,9 +34,9 @@ var sketch = function(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePo
 			yTrack.setState(0, 0, obsNoisePosSent);
 		}
 
-		p.draw = function () {
+ 		p.draw = function () {
 			// compute next location
-			if (p.mouseIsPressed) {
+			if (mouseOnCanvas && p.mouseIsPressed) {
 				x.push(p.mouseX);
 				y.push(p.mouseY);
 				vx = x[x.length - 1] - x[x.length - 2];

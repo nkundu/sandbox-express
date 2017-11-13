@@ -4,13 +4,14 @@
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
     <style> 
       body {padding: 0; margin: 0; }
-      .kalmancanvascontainer { touch-action: none; }
+      .kalmancanvascontainer canvas { touch-action: none; }
     </style>
     <script src="/js/jquery.js"></script>
     <script src="/js/p5.min.js"></script>
   	<script src="/js/kalman.js"></script>
     <script src="/js/sketch.js"></script>
     <script>
+      var sk = null;
       $(document).ready(function () {
         $('#demoForm').submit(function () {
           var processNoise = parseInt($(this).find('#processNoise').val(), 10);
@@ -18,7 +19,8 @@
           var obsNoiseVelReal = parseFloat($(this).find('#obsNoiseVelReal').val());
           var obsNoisePosSent = parseFloat($(this).find('#obsNoisePosSent').val());
           var obsNoiseVelSent = parseFloat($(this).find('#obsNoiseVelSent').val());
-          var sk = new p5(sketch(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePosSent, obsNoiseVelSent), window.document.getElementById('demo'));
+          if (sk != null) sk.remove();
+          sk = new p5(sketch(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePosSent, obsNoiseVelSent), window.document.getElementById('demo'));
           return false;
         });
       });
