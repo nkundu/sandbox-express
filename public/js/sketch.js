@@ -28,24 +28,26 @@ var sketch = function(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePo
 
 		p.draw = function () {
 			// compute next location
-			x.push(p.mouseX);
-			y.push(p.mouseY);
-			vx = x[x.length - 1] - x[x.length - 2];
-			vy = y[y.length - 1] - y[y.length - 2];
+			if (p.mouseIsPressed) {
+				x.push(p.mouseX);
+				y.push(p.mouseY);
+				vx = x[x.length - 1] - x[x.length - 2];
+				vy = y[y.length - 1] - y[y.length - 2];
 
-			// compute noisy measurement
-			measureX.push(x[x.length - 1] + obsNoisePosReal * kalmanhelpers.normal());
-			measureY.push(y[y.length - 1] + obsNoisePosReal * kalmanhelpers.normal());
-			var measurevx = vx + obsNoiseVelReal * kalmanhelpers.normal();
-			var measurevy = vy + obsNoiseVelReal * kalmanhelpers.normal();
+				// compute noisy measurement
+				measureX.push(x[x.length - 1] + obsNoisePosReal * kalmanhelpers.normal());
+				measureY.push(y[y.length - 1] + obsNoisePosReal * kalmanhelpers.normal());
+				var measurevx = vx + obsNoiseVelReal * kalmanhelpers.normal();
+				var measurevy = vy + obsNoiseVelReal * kalmanhelpers.normal();
 
-			xTrack.predict(1, 0); // timestep = 1, acceleration = 0;
-			yTrack.predict(1, 0);
-			xTrack.updatePosVelocity(measureX[measureX.length - 1], vx, obsNoisePosSent, obsNoiseVelSent);
-			yTrack.updatePosVelocity(measureY[measureY.length - 1], vy, obsNoisePosSent, obsNoiseVelSent);
+				xTrack.predict(1, 0); // timestep = 1, acceleration = 0;
+				yTrack.predict(1, 0);
+				xTrack.updatePosVelocity(measureX[measureX.length - 1], vx, obsNoisePosSent, obsNoiseVelSent);
+				yTrack.updatePosVelocity(measureY[measureY.length - 1], vy, obsNoisePosSent, obsNoiseVelSent);
 
-			predictX.push(xTrack.position());
-			predictY.push(yTrack.position());
+				predictX.push(xTrack.position());
+				predictY.push(yTrack.position());
+			}
 
 			if (x.length > 100) {
 				x = x.slice(1);
