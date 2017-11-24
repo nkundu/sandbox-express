@@ -1,0 +1,78 @@
+extends layout
+
+block append css
+  link(rel='stylesheet', href='/css/bootstrap_home.css')
+
+block append js
+    script(src="/js/p5.min.js")
+    script(src="/js/kalman.js")
+    script(src="/js/sketch.js")
+    script.
+      var sk = null;
+      $(document).ready(function () {
+        $('#demoForm').submit(function () {
+          var processNoise = parseInt($(this).find('#processNoise').val(), 10);
+          var obsNoisePosReal = parseFloat($(this).find('#obsNoisePosReal').val());
+          var obsNoiseVelReal = parseFloat($(this).find('#obsNoiseVelReal').val());
+          var obsNoisePosSent = parseFloat($(this).find('#obsNoisePosSent').val());
+          var obsNoiseVelSent = parseFloat($(this).find('#obsNoiseVelSent').val());
+          if (sk != null) sk.remove();
+          sk = new p5(sketch(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePosSent, obsNoiseVelSent), window.document.getElementById('demo'));
+          return false;
+        });
+      });
+
+block content
+    h1 Kalman Filter
+    p
+      | I made the demos below after implementing a Kalman filter, for the second time, and having to remind myself of
+      | various intracacies and behaviors of the filter.  I didn't find any interactive demos on the web that
+      | both show a non-trivial implementation and let you change the parameters set in the filter, and see how they affect it's behavior.
+    p
+      | I'm not going to repeat the various basic introductory content, which can be found in a web search.
+    p
+      | This Kalman filter implementation is seeking to model free motion in two dimensions (such as that of a vehicle, robot, person, etc.), where both
+      | the position and the velocity of the object can be observed.  That's very similar to the data you would get from a GPS reciever (say
+      | a Garmin GPS 18X OEM module).
+    p
+      | It does that with a constant velocity model, with process noise in the position.  Since the motion in independent in the two axes, two independent
+      | trackers are used for the position and velocity on each axis.  In practice, I think that velocity may frequently be measured along the direction
+      | of travel, while the heading measurement is independent and has it's own error behavior.  So the assumption of independent observations along
+      | each axis would fall apart, if that were the case.  However, assuming the error is small, it seems this approach does perform well.
+    p
+      | A more complex process model is tempting, but unless we have a good understanding of how our process should be modeled, I think the simple model
+      | is more easily tuned.  Although the velocity is constant, the free motion (turns, acceleration) is accounted for in the process noise.
+    p
+      | The original Kalman filter implementation was adapted from https://github.com/villoren/KalmanLocationManager, but modified significantly,
+      | since that model does not account for velocity observations.
+    p
+      | One common task when "tuning" the filter (once we are sure we have a correct implementation) is to select values for the observation noise and the
+      | process noise that allow the filter to track with the desired degree of damping.  Adjusting the parameters in the animation below will show
+      | how the damping is affected.
+    ul
+      li After selecting values, choose "Create" to initialize a Kalman filter.
+      li Drag in the black area.  The grey line indicates the path that you have drawn.
+      li
+        | The white line indicates the observation of the track you drew, with observation noise injected.
+        | (Observation noise is also added to the velocity of your mouse pointer).
+      li
+        | The green line shows the output of the Kalman filter from processing only the white track.
+      li
+        | The degree to which the green and grey lines overlap shows how well the filter is tracking.
+    form#demoForm
+      label Process noise (pixels x)
+      input#processNoise(type='text', value='5')
+      br
+      label Actual observation noise (position)
+      input#obsNoisePosReal(type='text', value='10')
+      br
+      label Actual observation noise (velocity)
+      input#obsNoiseVelReal(type='text', value='1')
+      br
+      label Reported observation noise (position)
+      input#obsNoisePosSent(type='text', value='10')
+      br
+      label Reported observation noise (velocity)
+      input#obsNoiseVelSent(type='text', value='1')
+      br
+      input(type='submit', value='Create')

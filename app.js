@@ -14,6 +14,7 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var stocks = require('./routes/stock');
 var prettygit = require('./routes/prettygit');
+var kalman = require('./routes/kalman');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use('/static', express.static('static'));
 app.use('/users', users);
 app.use('/stock', stocks);
 app.use('/prettygit', prettygit);
+app.use('/kalman', kalman);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
