@@ -2,6 +2,11 @@ extends layout
 
 block append css
   link(rel='stylesheet', href='/css/bootstrap_home.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css')
+  style.
+    .fa {
+      color: #1695A3;
+    }
 
 block append js
     script(src="/js/p5.min.js")
@@ -18,6 +23,7 @@ block append js
           var obsNoiseVelSent = parseFloat($(this).find('#obsNoiseVelSent').val());
           if (sk != null) sk.remove();
           sk = new p5(sketch(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePosSent, obsNoiseVelSent), window.document.getElementById('demo'));
+          window.document.getElementById('afterdemo').scrollIntoView();
           return false;
         });
       });
@@ -49,9 +55,16 @@ block content
       | One common task when "tuning" the filter (once we are sure we have a correct implementation) is to select values for the observation noise and the
       | process noise that allow the filter to track with the desired degree of damping.  Adjusting the parameters in the animation below will show
       | how the damping is affected.
+    ul.fa-ul
+      li
+        i.fa-li.fa.fa-github
+        a(href="prettygit/nkundu/sandbox-express/master/public/js/kalman.js.html") Kalman filter implementation
+      li
+        i.fa-li.fa.fa-github
+        a(href="prettygit/nkundu/sandbox-express/master/public/js/sketch.js.html") p5 sketch
     ul
       li After selecting values, choose "Create" to initialize a Kalman filter.
-      li Drag in the black area.  The grey line indicates the path that you have drawn.
+      li Drag in the black area.  The orange line indicates the path that you have drawn.
       li
         | The white line indicates the observation of the track you drew, with observation noise injected.
         | (Observation noise is also added to the velocity of your mouse pointer).
@@ -76,3 +89,7 @@ block content
       input#obsNoiseVelSent(type='text', value='1')
       br
       input(type='submit', value='Create')
+    #demo.kalmancanvascontainer
+    #afterdemo
+    footer.footer
+        p.text-muted &copy; #{year} Nicholas Kundu

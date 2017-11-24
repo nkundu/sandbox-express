@@ -70,7 +70,7 @@ var sketch = function(processNoise, obsNoisePosReal, obsNoiseVelReal, obsNoisePo
 			for (var i = 1; i < x.length - 1; i++) {
 				// actual track
 				p.strokeWeight(2);
-				p.stroke('#474C55'); p.line(x[i - 1], y[i - 1], x[i], y[i]);
+				p.stroke('#CC4A14'); p.line(x[i - 1], y[i - 1], x[i], y[i]);
 				// dot for measurement
 				p.strokeWeight(1);
 				p.stroke(255); p.line(measureX[i - 1], measureY[i - 1], measureX[i], measureY[i]);
