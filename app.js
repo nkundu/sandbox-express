@@ -36,6 +36,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next) {
+    res.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    res.header('X-Xss-Protection', '1; mode=block');
+    res.header('X-Content-Type-Options', 'nosniff');
+    res.removeHeader('X-Powered-By');
+    next();
+});
 app.use(cookieSession({
     name: 'session',
     keys: config.sessionKeys
